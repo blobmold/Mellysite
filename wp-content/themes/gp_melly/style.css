@@ -1,0 +1,419 @@
+/*
+Theme Name: Melly's Theme
+Theme URI: https://macron125.github.io
+Author: George Paresishvili
+Author URI: https://macron125.github.io
+Description: Melly's Theme designed by George Paresishvili
+Version: 2345234523452345
+Requires PHP: 7.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: twentytwenty
+*/
+
+/*
+0.0.0 Fonts
+1.0.0 Root
+2.0.0 Reset
+3.0.0 Reusable Parts
+4.0.0 Header
+5.0.0 Main
+    5.1.0 Main Content
+    5.2.0 Slider
+        5.2.1 Images
+        5.2.2 Arrows
+    5.3.0 Forms
+6.0.0 Footer
+*/
+
+/* 0.0.0 Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* 1.0.0 Root */
+:root {
+    --m-header-height: 70px;
+    --m-header-bg: rgba(255, 255, 255, 0.99);
+    --m-hamburger-bg: #000000;
+}
+/* 2.0.0 Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+@media screen and (max-width: 600px) {
+    #wpadminbar {
+        position: fixed;
+    }
+}
+
+ul, li {
+    text-decoration: none;
+    list-style-type: none;
+}
+
+/* 3.0.0 Reusable Parts */
+
+body {
+    height: 100vh;
+    min-height: 100vh;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+/* 4.0.0 Header */
+header {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: var(--m-header-height);
+    margin-bottom: 50px;
+}
+
+nav {
+    width: 100%;
+    height: 100%;
+}
+
+.m-gn_header {
+    position: absolute;
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--m-header-bg);
+    z-index: 9999;
+}
+
+.logo {
+    margin-left: 22px;
+    user-select: none;
+    text-align: center;
+    padding: 20px;
+}
+
+@media screen and (max-width: 415px) {
+    .logo {
+        padding: 5px;
+    }
+}
+
+.logo h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    font-size: 40px;
+    letter-spacing: 4px;
+}
+
+.logo a {
+    text-decoration: none;
+    color: #000000;
+}
+
+@media only screen and (max-width:768px){
+    .logo h1 {
+        font-size: 28px;
+    }
+}
+
+
+.m-gn_hamburger {
+    margin-right: 22px;
+    width: 45px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: all 0.7s ease;
+    cursor: pointer;
+}
+
+.m-gn_hamburger_btn {
+    width: 41px;
+    height: 2px;
+    border-radius: 2px;
+    background-color: var(--m-hamburger-bg);
+    transition: all 0.7s ease 0.3s;
+}
+
+header.active .m-gn_hamburger_btn {
+    background-color: transparent;
+    transition: all 0.7s ease;
+}
+
+.m-gn_hamburger_btn::before,
+.m-gn_hamburger_btn::after {
+    content: '';
+    position: absolute;
+    width: 41px;
+    height: 2px;
+    border-radius: 2px;
+    background-color: var(--m-hamburger-bg);
+    transition: all 0.7s cubic-bezier(0.79,-0.39,0.36,1.31);
+}
+
+.m-gn_hamburger_btn::before {
+    transform: translateY(-7px);
+}
+
+.m-gn_hamburger_btn::after {
+    transform: translateY(7px);
+}
+
+header.active .m-gn_hamburger_btn::after {
+    transform: rotate(225deg);
+}
+
+header.active .m-gn_hamburger_btn::before {
+    transform: rotate(135deg);
+}
+
+
+/* Hamburger Container */
+
+.m-gn_hamburger_container {
+    position: absolute;
+    top: 45px;
+    width: 100%;
+    height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    background-color: var(--m-header-bg);
+    overflow-y: scroll;
+    z-index: 999;
+}
+
+.m-gn_hamburger_container * {
+    user-select: none;
+}
+
+header.active .m-gn_hamburger_container {
+    visibility: visible;
+    height: calc(100vh - 45px);
+    transition: all 0.3s ease;
+}
+
+.m-gn_hamburger_list {
+    padding-top: 50px;
+    list-style: none;
+    text-align: center;
+}
+.m-gn_hamburger_list_item {
+    margin-bottom: 50px;
+    color: transparent;
+}
+
+.m-gn_hamburger_list_item a {
+    text-decoration: none;
+    padding: 15px;
+    color: transparent;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    letter-spacing: 4px;
+}
+
+header.active .m-gn_hamburger_list_item a {
+    color: rgba(0, 0, 0, 0.471);
+}
+
+header.active .m-gn_hamburger_list_item a:hover {
+    color: rgba(0, 0, 0);
+}
+/* 5.0.0 Main */
+
+main {
+    position: relative;
+    width: 100%;
+    max-width: 2560px;
+    margin: auto;
+    min-height: calc(100vh - var(--m-header-height) - 150px - 79px);
+}
+
+main section {
+    width: 100%;
+    max-width: 1024px;
+    margin: auto;
+    padding: 10px;
+}
+
+main section h2 {
+    font-weight: 800;
+    letter-spacing: 2px;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.content-wrapper h3 {
+    font-size: 20px;
+    margin: 40px 0 20px 0;
+}
+
+.content-wrapper p {
+    margin-top: 10px;
+    line-height: 1.5em;
+}
+
+/* 5.2.0 Slider */
+.slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-img-container {
+    display: flex;
+    overflow-x: hidden;
+}
+
+.slider-img-container li {
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    transition: all 0.6s cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+.slider-img-container img {
+    height: 100vh;
+    margin: 0 auto;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+/* .slider img:not(.activeSlide) {
+    display: none;
+} */
+
+/* 5.2.2 arrows */
+.arrows {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+}
+.nextarrow, .prevarrow {
+    font-size: 20px;
+    font-weight: 100;
+    padding: 60px 30px;
+    margin: 0 20px;
+    color: #eaeaea;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+.nextarrow:hover, .prevarrow:hover {
+    color: #404040;
+}
+
+/* 5.3.0 Forms */
+
+form#contact-form {
+    max-width: 500px;
+    margin: auto;
+}
+
+#contact-form fieldset {
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#contact-form .form-control {
+    margin-top: 20px;
+    width: 100%;
+}
+
+#contact-form .form-control label {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    height: 50px;
+    border: 1px solid rgb(220, 220, 220);
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 13px;
+    font-family: 'Montserrat';
+}
+
+#contact-form textarea {
+    height: 150px;
+}
+
+#contact-form input[type='submit'] {
+    width: 200px;
+    padding: 5px;
+    margin-top: 20px;
+    background-color: rgb(244, 244, 244);
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#contact-form input[type='submit']:hover {
+    color: white;
+    background-color: rgb(66, 66, 66);
+}
+/* 6.0.0 Footer */
+
+footer {
+    margin-top: 50px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    max-width: 2560px;
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+
+.footer-container {
+    width: 95%;
+    height: auto;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-social a {
+    width: 100%;
+    height: 100%;
+}
+
+.footer-social img {
+    width: 20px;
+    margin: 20px 10px;
+}
+
+.footer-copy_notice {
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 200;
+    color: #5a5a5a;
+}
